@@ -1,0 +1,36 @@
+NAME: purl
+VERSION: "0.1.0"
+DESCRIPTION: >
+  Transfer data from URLs (pure-Python alternative to curl) with simple flags for method, headers, redirects, and body output. Prints response body to stdout by default or saves to a file with -o/--output. Supports basic HTTP verbs, custom headers, optional redirect following, and header inclusion with -i.
+USAGE:
+  - "purl [OPTIONS] URL"
+  - "purl https://example.com"
+  - "purl -o file.html https://example.com"
+OPTIONS:
+  - "-h, --help                Show help message"
+  - "-v, --version             Show version information"
+  - "-o, --output FILE         Write response body to file instead of stdout"
+  - "-H, --header HEADER       Add custom header (repeatable, e.g., -H 'Accept: application/json')"
+  - "-X, --request METHOD      HTTP method (GET default; supports POST, PUT, DELETE)"
+  - "-d, --data DATA           Request body (implies POST if method not set)"
+  - "-i, --include             Include response headers in output"
+  - "-L, --location            Follow redirects"
+  - "--verbose                 Verbose output (status, headers, diagnostics)"
+EXAMPLES:
+  - "purl https://example.com                               # GET body to stdout"
+  - "purl -o page.html https://example.com                  # Save body to file"
+  - "purl -i https://api.github.com                         # Include response headers"
+  - "purl -H 'Accept: application/json' https://api.github.com"
+  - "purl -X POST -d 'key=value' https://api.example.com"
+  - "purl -L https://example.com/redirect                   # Follow redirects"
+OUTPUT: >
+  Response body printed to stdout or saved to file. Exit code 0 on success; non-zero on network/HTTP errors.
+AUTHOR: "@spacemany2k38"
+DATE: "2025-12-27"
+NOTES:
+  - "Exit code 0 on success; non-zero on network/HTTP errors."
+  - "Headers can be repeated with multiple -H flags."
+  - "When -d is provided without -X, method defaults to POST."
+  - "Use -i to capture headers alongside body; consider redirect behavior with -L."
+
+

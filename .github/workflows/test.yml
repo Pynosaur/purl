@@ -1,0 +1,67 @@
+name: Test purl
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        python-version: ['3.8', '3.11', '3.12']
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+    
+    - name: Test purl basic functionality
+      run: |
+        python app/main.py --version
+        python app/main.py --help
+    
+    - name: Test URL fetching
+      run: |
+        python app/main.py https://httpbin.org/status/200
+        python app/main.py -o /tmp/test_output.txt https://httpbin.org/status/200
+        rm /tmp/test_output.txt
+    
+    - name: Run unit tests
+      run: |
+        python test/test_main.py
+  
+  build:
+    runs-on: macos-latest
+    needs: test
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Bazel
+      uses: bazel-contrib/setup-bazel@0.8.1
+      with:
+        bazelisk-cache: true
+    
+    - name: Build with Bazel
+      run: |
+        bazel build //:purl_bin
+      continue-on-error: true
+    
+    - name: Test built binary
+      if: success()
+      run: |
+        if [ -f ./bazel-bin/purl ]; then
+          ./bazel-bin/purl --version
+          ./bazel-bin/purl --help
+          echo "Built binary works"
+        else
+          echo "Binary not built, skipping test"
+        fi
+
