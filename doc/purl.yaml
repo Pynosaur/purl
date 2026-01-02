@@ -1,5 +1,5 @@
 NAME: purl
-VERSION: "0.1.0"
+VERSION: "0.1.1"
 DESCRIPTION: >
   Transfer data from URLs (pure-Python alternative to curl) with simple flags for method, headers, redirects, and body output. Prints response body to stdout by default or saves to a file with -o/--output. Supports basic HTTP verbs, custom headers, optional redirect following, and header inclusion with -i.
 USAGE:

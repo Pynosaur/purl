@@ -1,0 +1,6 @@
+name: purl
+version: 0.1.1
+author: @spacemany2k38
+description: Pure Python URL transfer tool (curl alternative)
+type: cli-tool
+
