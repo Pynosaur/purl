@@ -9,22 +9,22 @@ from pathlib import Path
 
 def write_to_file(content, filepath, verbose=False):
     """Write content to file.
-    
+
     Args:
         content: Bytes to write
         filepath: Path to output file
         verbose: Print status message
-    
+
     Returns:
         True if successful, False otherwise
     """
     try:
         output_path = Path(filepath)
         output_path.write_bytes(content)
-        
+
         if verbose:
             print(f"Saved to {filepath}", file=sys.stderr)
-        
+
         return True
     except Exception as e:
         print(f"purl: Failed to write {filepath}: {e}", file=sys.stderr)
@@ -33,10 +33,10 @@ def write_to_file(content, filepath, verbose=False):
 
 def write_to_stdout(content):
     """Write content to stdout.
-    
+
     Args:
         content: Bytes to write
-    
+
     Returns:
         True if successful, False otherwise
     """
@@ -47,7 +47,7 @@ def write_to_stdout(content):
         except UnicodeDecodeError:
             # Binary content - write to stdout buffer
             sys.stdout.buffer.write(content)
-        
+
         return True
     except Exception as e:
         print(f"purl: Output error: {e}", file=sys.stderr)
@@ -56,7 +56,7 @@ def write_to_stdout(content):
 
 def print_headers(header_lines):
     """Print headers to stderr.
-    
+
     Args:
         header_lines: List of header strings
     """
@@ -67,7 +67,7 @@ def print_headers(header_lines):
 
 def print_request_info(method, url, headers_dict):
     """Print request information for verbose mode.
-    
+
     Args:
         method: HTTP method
         url: Request URL
