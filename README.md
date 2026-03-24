@@ -2,7 +2,7 @@
 
 Pure Python URL transfer tool (alternative to curl).
 
-Version: 0.1.0
+Version: 0.1.1
 
 ## Features
 
