@@ -1,5 +1,5 @@
 NAME: purl
-VERSION: "0.2.0"
+VERSION: "0.2.1"
 DESCRIPTION: >
   Transfer data from URLs with colored output, timing, redirects, auth, and JSON formatting. Pure Python alternative to curl. Prints response body to stdout by default or saves to a file with -o/--output. Supports HTTP verbs, custom headers, redirect following with chain display, Basic auth, response timing, JSON pretty-printing, and @file/@- body syntax.
 USAGE:

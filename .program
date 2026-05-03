@@ -1,5 +1,5 @@
 name: purl
-version: 0.2.0
+version: 0.2.1
 author: @spacemany2k38
 description: Transfer data from URLs with colored output, timing, redirects, auth, and JSON formatting. Pure Python alternative to curl.
 type: cli-tool
